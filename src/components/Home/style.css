@@ -1,0 +1,208 @@
+*{
+  box-sizing: border-box;
+}
+.header {
+  background-color: #d1e2e9;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.header img {
+  width: 59%;
+}
+
+.header-parg {
+  /* padding-left: 50px; */
+  padding-top: 50px;
+}
+.header-parg h2 {
+  color: var(--yellow-color);
+
+}
+.header-parg h2  span {
+  color: var(--rebecc-color);
+}
+
+.header-parg h1 {
+  color: var(--blue-color);
+  text-shadow: 3px 3px 0 #f1f1f1, 4px 4px 0 #f1f1f1
+}
+.header .btn ,
+.Section-Sale .btn ,
+.ladies-fashion .btn {
+  border-color: var(--main-color);
+  color:  var(--main-color);
+  font-weight: bold;
+}
+
+.header .btn:hover,
+.Section-Sale .btn:hover ,
+.ladies-fashion .btn:hover  {
+  color: white;
+  background-color:  var(--main-color);
+}
+
+.Section-info {
+  padding-top: 20px;
+}
+
+.Section-info div {
+  padding: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  /* color: var(--white-color); */
+  font-weight: bold;
+  /* text-shadow: 5px 6px 0px rgb(37 59 112 / 10%); */
+  position: relative;
+
+}
+.Section-info div .item {
+  overflow: hidden;
+  text-align: right;
+  color: var(--white-color);
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  cursor: pointer;
+}
+.Section-info .box1{
+  background-color: var(--wardy-color);
+}
+.Section-info .box1:hover{
+  background-color: #f4a4b8;
+}
+.Section-info .box2{
+  background-color: var(--labany-color);
+}
+.Section-info .box2:hover{
+  background-color: #69c3de;
+}
+.Section-info .box3{
+  background-color: var(--green-color);
+}
+.Section-info .box3:hover{
+  background-color: #14daba;
+}
+.Section-info div .item h3 {
+  font-size: 20px;
+}
+.Section-info div img {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  width: 45%;
+}
+
+/* start Section-Sale */
+.Section-Sale {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.Section-Sale .item {
+  display: flex;
+  justify-content: space-between;
+  box-shadow: -1px 1px 20px 20px #f1f1f1, 4px 4px 0 #f1f1f1;
+  padding: 50px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.Section-Sale .item .box p {
+  font-size: 22px;
+  color: var(--);
+}
+.Section-Sale .item .box h3{
+  margin-bottom: 15px;
+}
+.Section-Sale .item img {
+  width: 60%;
+}
+
+/* start homeProducts */
+.homeProducts {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.header-product {
+  color: var(--blue-color);
+  padding: 15px;
+  position: relative;
+}
+.header-product::after {
+  position: absolute;
+  content: '';
+  bottom: 5px;
+  left: 50%;
+  width: 100px;
+  transform: translateX(-50%);
+  height: 3px;
+  background-color: var(--main-color);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.products {
+  margin-bottom: 20px;
+  padding: 0;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 15%);
+  cursor: pointer;
+
+}
+.products img{
+  width: 100%;
+  margin-bottom: 10px;
+}
+.products p {
+  color: var(--blue-color);
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.products span {
+  color: var(--main-color);
+  font-weight: bold;
+}
+.products i {
+  color: #69c3de;
+  margin-right: 1px;
+}
+/* start latest ladies fashion */
+.ladies-fashion {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 15%);
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.ladisImages {
+  height: 450px;
+  margin-bottom: 20px;
+}
+.ladies-fashion img {
+  height: 100%;
+}
+.ladies-info {
+align-self: center;
+}
+.ladies-info h2 {
+  color: var(--blue-color);
+}
+.ladies-info p {
+  color: #959595;
+}

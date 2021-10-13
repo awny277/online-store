@@ -1,0 +1,70 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.navbar-expand-lg .navbar-collapse {
+  justify-content: center;
+}
+.navbar-light .navbar-nav .nav-link {
+  padding: 10px 30px 10px 20px;
+}
+
+.offer{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0 0;
+  background-color: #d1e2e9;
+  color: #959595;
+}
+.red {
+  color: red;
+}
+.black{
+  color: black;
+}
+.p-center{
+  margin-right: 88px;
+}
+.btn-lang {
+  cursor: pointer;
+}
+
+.navbar-light .navbar-nav .Kids {
+  color: red;
+  position: relative;
+}
+.navbar-light .navbar-nav .Kids::before {
+  content: 'sale';
+  position: absolute;
+  top: -3px;
+  right: 4px;
+  color: white;
+  background-color: #ffac39;
+  padding: 3px 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: 10px;
+}
+
+.navbar-light .navbar-nav .Man {
+  position: relative;
+}
+.navbar-light .navbar-nav .Man::before {
+  content: 'new';
+  position: absolute;
+  top: -3px;
+  right: 4px;
+  color: white;
+  background-color: #20f7d5;
+  padding: 3px 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: 10px;
+}
