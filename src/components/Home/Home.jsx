@@ -8,7 +8,7 @@ class Home extends React.Component {
       (ele) => ele.id > 14 && ele.id < 19
     );
     return (
-      <div>
+      <React.Fragment>
         <div className="header">
           <div className="header-parg">
             <h2 className="frist-p">
@@ -120,7 +120,7 @@ class Home extends React.Component {
             </div>
           </div>
         </main>
-      </div>
+      </React.Fragment>
     );
   }
 }

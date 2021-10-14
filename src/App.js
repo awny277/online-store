@@ -15,10 +15,37 @@ import ProductDetails from "./components/ProductDelatils/ProductDetails";
 class App extends React.Component {
   state = {
     Products: AllProducts,
+    TotlaPrice: 0
   };
   Handelerincrement = (item) => {
-    let product = [...this.state.Products];
-    let index = product.indexOf(item);
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    result[index].count++;
+    let price = result[index].incrementPrice;
+    let total = this.state.TotlaPrice
+    total += price;
+    this.setState({
+      Products: result,
+      TotlaPrice: total
+    })
+  };
+
+  HandelerDecrement = (item) => {
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    let price = result[index].incrementPrice;
+    let total = this.state.TotlaPrice
+    if (result[index].count > 0) {
+      result[index].count--;
+      total -= price;
+    } else {
+      result[index].count = 0;
+      result[index].incart = false;
+    }
+    this.setState({
+      Products: result,
+      TotlaPrice: total
+    })
   };
 
   HandelerAddCart = (item) => {
@@ -29,6 +56,20 @@ class App extends React.Component {
       Products: result,
     });
   };
+
+  OnDelete = (item) => {
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    result[index].incart = false;
+    let total = this.state.TotlaPrice;
+    let price = result[index].incrementPrice;
+    total = total - price * result[index].count;
+    result[index].count = 0;
+    this.setState({
+      Products: result,
+      TotlaPrice: total
+    });
+  }
   render() {
     return (
       <React.Fragment>
@@ -86,6 +127,12 @@ class App extends React.Component {
             render={(props) => (
               <Cart
                 Products={this.state.Products.filter((ele) => ele.incart)}
+                total={this.state.TotlaPrice}
+                onIncrement={this.Handelerincrement}
+                onDecrement={this.HandelerDecrement}
+                onDelete={this.OnDelete}
+                // TotlaPrice={this.getTotalPrice}
+                {...props}
               />
             )}
           />
