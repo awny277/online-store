@@ -2,12 +2,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-transform: capitalize;
 }
+
 .navbar-expand-lg .navbar-collapse {
   justify-content: center;
 }
 .navbar-light .navbar-nav .nav-link {
   padding: 10px 30px 10px 20px;
+  font-weight: 600;
+}
+.nav-bar span ,
+.nav-bar p  {
+  font-weight: 400;
 }
 
 .offer{
@@ -67,4 +74,9 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   font-size: 10px;
+}
+.nav-bar .btn {
+  color: white;
+  background-color: var(--main-color);
+  font-weight: 600;
 }

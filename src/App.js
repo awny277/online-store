@@ -11,12 +11,15 @@ import { AllProducts } from "./components/Products";
 import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
 import ProductDetails from "./components/ProductDelatils/ProductDetails";
+import Footer from "./components/Footer/Footer";
+import Swal from "sweetalert2";
 
 class App extends React.Component {
   state = {
     Products: AllProducts,
     TotlaPrice: 0
   };
+
   Handelerincrement = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
@@ -35,12 +38,11 @@ class App extends React.Component {
     let index = result.indexOf(item);
     let price = result[index].incrementPrice;
     let total = this.state.TotlaPrice
-    if (result[index].count > 0) {
+    if (result[index].count > 1) {
       result[index].count--;
       total -= price;
     } else {
-      result[index].count = 0;
-      result[index].incart = false;
+      result[index].count = 1;
     }
     this.setState({
       Products: result,
@@ -52,8 +54,12 @@ class App extends React.Component {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
     result[index].incart = !result[index].incart;
+    let price = result[index].incrementPrice;
+    let total = this.state.TotlaPrice
+    total += price;
     this.setState({
       Products: result,
+      TotlaPrice: total
     });
   };
 
@@ -64,24 +70,57 @@ class App extends React.Component {
     let total = this.state.TotlaPrice;
     let price = result[index].incrementPrice;
     total = total - price * result[index].count;
-    result[index].count = 0;
+    result[index].count = 1;
     this.setState({
       Products: result,
       TotlaPrice: total
     });
   }
+
+  async HandlerReister() {
+    const { value: email } = await Swal.fire({
+      title: 'Register',
+      input: 'email',
+      inputLabel: 'Your email address',
+      inputPlaceholder: 'Enter your email address'
+    })
+
+    if (email) {
+      window.localStorage.setItem("email", email)
+    }
+    const { value: password } = await Swal.fire({
+      title: 'Enter your password',
+      input: 'password',
+      inputLabel: 'Password',
+      inputPlaceholder: 'Enter your password',
+      inputAttributes: {
+        maxlength: 10,
+        autocapitalize: 'off',
+        autocorrect: 'off'
+      }
+    })
+
+    if (password) {
+      window.localStorage.setItem("paswword", password)
+    }
+  }
   render() {
+    // window.localStorage.clear()
     return (
       <React.Fragment>
         <NavBar
           couunt={this.state.Products.filter((ele) => ele.incart).length}
+          register={this.HandlerReister}
         />
         <Switch>
           <Route
             path="/Home"
             exact
             render={(props) => (
-              <Home Products={this.state.Products} {...props} />
+              <Home
+                Products={this.state.Products}
+                register={this.HandlerReister}
+                {...props} />
             )}
           />
           <Route
@@ -90,6 +129,7 @@ class App extends React.Component {
               <MenProducts
                 Products={this.state.Products}
                 AddButton={this.HandelerAddCart}
+                register={this.HandlerReister}
                 {...props}
               />
             )}
@@ -100,6 +140,7 @@ class App extends React.Component {
               <WomenProducts
                 Products={this.state.Products}
                 AddButton={this.HandelerAddCart}
+                register={this.HandlerReister}
                 {...props}
               />
             )}
@@ -110,6 +151,7 @@ class App extends React.Component {
               <KidsProducts
                 Products={this.state.Products}
                 AddButton={this.HandelerAddCart}
+                register={this.HandlerReister}
                 {...props}
               />
             )}
@@ -131,13 +173,13 @@ class App extends React.Component {
                 onIncrement={this.Handelerincrement}
                 onDecrement={this.HandelerDecrement}
                 onDelete={this.OnDelete}
-                // TotlaPrice={this.getTotalPrice}
                 {...props}
               />
             )}
           />
           <Redirect from="/" to="/Home" />
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }

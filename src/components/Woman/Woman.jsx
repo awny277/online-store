@@ -53,7 +53,13 @@ class WomenProducts extends React.Component {
                             </div>
                             <button
                               className="btn"
-                              onClick={() => this.props.AddButton(ele)}
+                              onClick={() => {
+                                if (window.localStorage.length !== 0) {
+                                  this.props.AddButton(ele)
+                                } else {
+                                  this.props.register()
+                                }
+                              }}
                             >
                               <i className="fas fa-shopping-cart"></i>
                             </button>
