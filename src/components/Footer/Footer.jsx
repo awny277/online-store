@@ -20,7 +20,7 @@ const Footer = () => {
               <i className="fas fa-phone-alt"></i>
               <p>+123 456 7898</p>
             </div>
-            <div className="links">
+            <div className="links ">
               <a href="https://www.google.com">
                 <i className="fab fa-facebook-f"></i>
               </a>

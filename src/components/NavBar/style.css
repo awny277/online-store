@@ -80,3 +80,16 @@
   background-color: var(--main-color);
   font-weight: 600;
 }
+
+.nav-bar .navI {
+  position: relative;
+}
+.nav-bar .navI i {
+  color: var(--blue-color);
+}
+.nav-bar .navI span {
+  position: absolute;
+  top:2px;
+  right: 17px;
+  color: var(--blue-color);
+}

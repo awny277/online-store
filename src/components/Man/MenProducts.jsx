@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 class MenProducts extends React.Component {
+
   render() {
     let product = this.props.Products.filter((ele) => ele.id < 8);
     return (
@@ -50,16 +51,16 @@ class MenProducts extends React.Component {
                               <i className="far fa-star"></i>
                             </div>
                             <button
-                              className="btn"
+                              className="btn btnAdd"
                               onClick={() => {
                                 if (window.localStorage.length !== 0) {
-                                  this.props.AddButton(ele)
+                                  this.props.AddWish(ele)
                                 } else {
                                   this.props.register()
                                 }
                               }}
                             >
-                              <i className="fas fa-shopping-cart"></i>
+                              <i className="fas fa-heart love"></i>
                             </button>
                           </div>
                         </div>

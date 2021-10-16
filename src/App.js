@@ -12,6 +12,7 @@ import Cart from "./components/Cart/Cart";
 import Contact from "./components/Contact/Contact";
 import ProductDetails from "./components/ProductDelatils/ProductDetails";
 import Footer from "./components/Footer/Footer";
+import Wishlist from "./components/Wishlist/Wishlist";
 import Swal from "sweetalert2";
 
 class App extends React.Component {
@@ -53,10 +54,12 @@ class App extends React.Component {
   HandelerAddCart = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
-    result[index].incart = !result[index].incart;
     let price = result[index].incrementPrice;
-    let total = this.state.TotlaPrice
-    total += price;
+    let total = this.state.TotlaPrice;
+    if (result[index].incart === false) {
+      result[index].incart = true;
+      total += price;
+    }
     this.setState({
       Products: result,
       TotlaPrice: total
@@ -76,6 +79,24 @@ class App extends React.Component {
       TotlaPrice: total
     });
   }
+
+  HandelerAddWish = (item) => {
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    result[index].wish = true;
+    this.setState({
+      Products: result
+    });
+  };
+
+  HandelerDeleteWish = (item) => {
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    result[index].wish = false;
+    this.setState({
+      Products: result
+    });
+  };
 
   async HandlerReister() {
     const { value: email } = await Swal.fire({
@@ -109,7 +130,8 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <NavBar
-          couunt={this.state.Products.filter((ele) => ele.incart).length}
+          count={this.state.Products.filter((ele) => ele.incart).length}
+          wish={this.state.Products.filter((ele) => ele.wish).length}
           register={this.HandlerReister}
         />
         <Switch>
@@ -128,8 +150,8 @@ class App extends React.Component {
             render={(props) => (
               <MenProducts
                 Products={this.state.Products}
-                AddButton={this.HandelerAddCart}
                 register={this.HandlerReister}
+                AddWish={this.HandelerAddWish}
                 {...props}
               />
             )}
@@ -139,8 +161,8 @@ class App extends React.Component {
             render={(props) => (
               <WomenProducts
                 Products={this.state.Products}
-                AddButton={this.HandelerAddCart}
                 register={this.HandlerReister}
+                AddWish={this.HandelerAddWish}
                 {...props}
               />
             )}
@@ -150,8 +172,8 @@ class App extends React.Component {
             render={(props) => (
               <KidsProducts
                 Products={this.state.Products}
-                AddButton={this.HandelerAddCart}
                 register={this.HandlerReister}
+                AddWish={this.HandelerAddWish}
                 {...props}
               />
             )}
@@ -159,7 +181,23 @@ class App extends React.Component {
           <Route
             path="/product/:id/:name?"
             render={(props) => (
-              <ProductDetails Products={this.state.Products} {...props} />
+              <ProductDetails
+                Products={this.state.Products}
+                onIncrement={this.Handelerincrement}
+                onDecrement={this.HandelerDecrement}
+                AddButton={this.HandelerAddCart}
+                AddWish={this.HandelerAddWish}
+                register={this.HandlerReister}
+                {...props} />
+            )}
+          />
+          <Route
+            path="/WishList"
+            render={(props) => (
+              <Wishlist
+                Products={this.state.Products.filter((ele) => ele.wish)}
+                DeleteWish={this.HandelerDeleteWish}
+                {...props} />
             )}
           />
           <Route path="/About" render={(props) => <About {...props} />} />

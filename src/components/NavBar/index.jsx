@@ -114,9 +114,13 @@ class NavBar extends React.Component {
                 <NavLink className="nav-link" to="/Contact">
                   Contact
                 </NavLink>
-                <NavLink className="nav-link" to="/cart">
-                  <i className="fas fa-shopping-cart"></i>{" "}
-                  <span>{this.props.couunt}</span>
+                <NavLink className="nav-link navI cart" to="/cart">
+                  <i className="fas fa-shopping-cart  "></i>{" "}
+                  <span>{this.props.count}</span>
+                </NavLink>
+                <NavLink className="nav-link navI love" to="/WishList">
+                  <i className="fas fa-heart  "></i>
+                  <span>{this.props.wish}</span>
                 </NavLink>
                 <button className="btn" onClick={Login}> Login</button>
               </div>
