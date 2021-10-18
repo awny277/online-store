@@ -20,7 +20,7 @@ class App extends React.Component {
     Products: AllProducts,
     TotlaPrice: 0
   };
-
+  // increment count
   Handelerincrement = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
@@ -33,7 +33,7 @@ class App extends React.Component {
       TotlaPrice: total
     })
   };
-
+  // Decrement count
   HandelerDecrement = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
@@ -50,7 +50,7 @@ class App extends React.Component {
       TotlaPrice: total
     })
   };
-
+  // Add Product to Cart
   HandelerAddCart = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
@@ -59,27 +59,31 @@ class App extends React.Component {
     if (result[index].incart === false) {
       result[index].incart = true;
       total += price;
+      window.localStorage.setItem(`borduct ${result[index].name} inCart`, true);
+      this.setState({
+        Products: result,
+        TotlaPrice: total
+      });
+    }
+  };
+  // Delete Product from Cart
+  OnDelete = (item) => {
+    let result = [...this.state.Products];
+    let index = result.indexOf(item);
+    let total = this.state.TotlaPrice;
+    let price = result[index].incrementPrice;
+    if (window.localStorage.getItem(`borduct ${result[index].name} inCart`) === `true`) {
+      total = total - price * result[index].count;
+      result[index].incart = false;
+      window.localStorage.setItem(`borduct ${result[index].name} inCart`, false);
+      result[index].count = 1;
     }
     this.setState({
       Products: result,
       TotlaPrice: total
     });
-  };
-
-  OnDelete = (item) => {
-    let result = [...this.state.Products];
-    let index = result.indexOf(item);
-    result[index].incart = false;
-    let total = this.state.TotlaPrice;
-    let price = result[index].incrementPrice;
-    total = total - price * result[index].count;
-    result[index].count = 1;
-    this.setState({
-      Products: result,
-      TotlaPrice: total
-    });
   }
-
+  // Add Product to WishList
   HandelerAddWish = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
@@ -88,16 +92,32 @@ class App extends React.Component {
       Products: result
     });
   };
-
+  // Delete Product From WishList
   HandelerDeleteWish = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
     result[index].wish = false;
     this.setState({
-      Products: result
+      Products: result,
     });
   };
-
+  // Confirm Checkout 
+  handlerConfrim = () => {
+    let result = [...this.state.Products];
+    result = result.map((ele) => {
+      window.localStorage.setItem(`borduct ${ele.name} inCart`, false);
+      ele.incart = false;
+      ele.count = 1
+      return ele
+    });
+    let total = this.state.TotlaPrice;
+    total = 0;
+    this.setState({
+      Products: result,
+      TotlaPrice: total
+    })
+  }
+  // Register // Can't by or wish any product untill Register
   async HandlerReister() {
     const { value: email } = await Swal.fire({
       title: 'Register',
@@ -211,6 +231,8 @@ class App extends React.Component {
                 onIncrement={this.Handelerincrement}
                 onDecrement={this.HandelerDecrement}
                 onDelete={this.OnDelete}
+                AddWish={this.HandelerAddWish}
+                onConfirm={this.handlerConfrim}
                 {...props}
               />
             )}

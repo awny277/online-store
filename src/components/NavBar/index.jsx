@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 class NavBar extends React.Component {
   render() {
     let product = this.props.register;
+
+    // Login
     async function Login(e) {
       const { value: email } = await Swal.fire({
+        allowOutsideClick: false,
         title: 'Login',
         input: 'email',
         inputLabel: 'Your email address',
@@ -15,6 +18,7 @@ class NavBar extends React.Component {
       })
 
       const { value: password } = await Swal.fire({
+        allowOutsideClick: false,
         title: 'Login',
         input: 'password',
         inputLabel: 'Password',
@@ -27,6 +31,7 @@ class NavBar extends React.Component {
       })
 
       if (password) {
+        // If Password or email Rong return Reister
         if (window.localStorage.length === 0 || window.localStorage.getItem("password") !== password || window.localStorage.getItem("email") !== email) {
           e.preventDefault()
           Swal.fire({

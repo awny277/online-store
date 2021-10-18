@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 onlineStore">
             <h1>Online Store</h1>
             <div className="info">
               <i className="fas fa-envelope"></i>
@@ -52,23 +52,23 @@ const Footer = () => {
           <div className="col-md-2 Categories">
             <h4>Infomation</h4>
             <div className="navlink">
-              <NavLink className="linksPages" to="/MenProducts">about us</NavLink>
-              <NavLink className="linksPages" to="/WomenProducts">contact</NavLink>
-              <NavLink className="linksPages" to="/KidsProducts">Terms & Conditions</NavLink>
-              <NavLink className="linksPages" to="/WomenProducts">Returns & Exchanges</NavLink>
-              <NavLink className="linksPages" to="/WomenProducts">Shipping & Delivery</NavLink>
-              <NavLink className="linksPages" to="/MenProducts">Privacy Policy</NavLink>
+              <NavLink className="linksPages" to="/About">about us</NavLink>
+              <NavLink className="linksPages" to="/Contact">contact</NavLink>
+              <NavLink className="linksPages" to="/About">Terms & Conditions</NavLink>
+              <NavLink className="linksPages" to="/About">Returns & Exchanges</NavLink>
+              <NavLink className="linksPages" to="/About">Shipping & Delivery</NavLink>
+              <NavLink className="linksPages" to="/About">Privacy Policy</NavLink>
             </div>
           </div>
           <div className="col-md-2 Categories">
             <h4>Useful links</h4>
             <div className="navlink">
-              <NavLink className="linksPages" to="/MenProducts">Store Location</NavLink>
+              <NavLink className="linksPages" to="/About">Store Location</NavLink>
               <NavLink className="linksPages" to="/WomenProducts">Latest News</NavLink>
-              <NavLink className="linksPages" to="/KidsProducts">My Account</NavLink>
-              <NavLink className="linksPages" to="/WomenProducts">Size Guide</NavLink>
-              <NavLink className="linksPages" to="/WomenProducts">FAQs 2</NavLink>
-              <NavLink className="linksPages" to="/MenProducts">FAQs</NavLink>
+              <NavLink className="linksPages" to="/About">My Account</NavLink>
+              <NavLink className="linksPages" to="/About">Size Guide</NavLink>
+              <NavLink className="linksPages" to="/Contact">FAQs 2</NavLink>
+              <NavLink className="linksPages" to="/Contact">FAQs</NavLink>
             </div>
           </div>
           <div className="col-md-3 Categories">
@@ -77,9 +77,9 @@ const Footer = () => {
               <p>Subscribe to our newsletter and get 10% off your first purchase</p>
               <div className="subscribe">
                 <input type="text" />
-                <NavLink className="linksPages" to="/WomenProducts">subscribe</NavLink>
+                <NavLink className="linksPages" to="/Contact">subscribe</NavLink>
               </div>
-              <NavLink className="linksPages" to="/MenProducts">FAQs</NavLink>
+              <NavLink className="linksPages" to="/Contact">FAQs</NavLink>
             </div>
           </div>
         </div>

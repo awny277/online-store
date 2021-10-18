@@ -85,17 +85,17 @@ class ProductDetails extends React.Component {
               </div>
               <div className="linksNo1">
                 <button className="linksPages">Returns &amp; delivery</button>
-                <NavLink className="linksPages" to="/WomenProducts">ask a question</NavLink>
+                <NavLink className="linksPages" to="/Contact">ask a question</NavLink>
               </div>
               <span className="sku">sku: n/a</span>
               <div className="Categories">
                 <span>Categories: </span>
-                <NavLink className="linksPages" to="/WomenProducts">all</NavLink>
-                <NavLink className="linksPages" to="/WomenProducts">new Arrival</NavLink>
+                <NavLink className="linksPages" to="/">all</NavLink>
+                <NavLink className="linksPages" to="/MenProducts">new Arrival</NavLink>
                 <NavLink className="linksPages" to="/WomenProducts">dress</NavLink>
                 <NavLink className="linksPages" to="/WomenProducts">tops</NavLink>
-                <NavLink className="linksPages" to="/WomenProducts">t-shirt</NavLink>
-                <NavLink className="linksPages" to="/WomenProducts">kids</NavLink>
+                <NavLink className="linksPages" to="/MenProducts">t-shirt</NavLink>
+                <NavLink className="linksPages" to="/KidsProducts">kids</NavLink>
               </div>
               <div className="links">
                 <a href="https://www.google.com">
