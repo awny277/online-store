@@ -232,4 +232,7 @@
     width: 80%;
     margin: 15px;
   }
+  .productDetails .links {
+    width: 60% !important;
+  }
  }
