@@ -148,20 +148,29 @@ class ProductDetails extends React.Component {
                 </NavLink>
               </div>
               <div className="links">
-                <a href="https://www.google.com">
+                <a href="https://www.facebook.com/abdo.awny.9/" target="_blank"
+                  rel="noreferrer">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://www.google.com">
+                <a href="https://twitter.com/Abdelrahman2486"
+                  target="_blank"
+                  rel="noreferrer">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="https://www.google.com">
+                <a href="https://www.instagram.com/abdelrahman_awny/ "
+                  target="_blank"
+                  rel="noreferrer">
                   <i className="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.google.com">
+                <a href="https://www.linkedin.com/in/abdelrahman-awny/"
+                  target="_blank"
+                  rel="noreferrer">
                   <i className="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://www.google.com">
-                  <i className="fab fa-pinterest-p"></i>
+                <a href="https://github.com/awny277"
+                  target="_blank"
+                  rel="noreferrer">
+                  <i className="fab fa-github"></i>
                 </a>
               </div>
             </div>
