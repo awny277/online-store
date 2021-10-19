@@ -1,0 +1,42 @@
+*{
+  box-sizing: border-box;
+}
+.about h1 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: var(--blue-color);
+}
+.aboutInfo {
+  padding: 10px;
+}
+.aboutInfo h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+.aboutInfo p {
+  color: #878787;
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0;
+  font-weight: 500;
+}
+.aboutQuote {
+  margin-top: 50px;
+  background-color: #f1f1f1;
+}
+.aboutQuote blockquote {
+  padding: 30px 30px 30px 50px ;
+  margin: 0;
+}
+.aboutQuote blockquote p {
+  margin: 0;
+  position: relative;
+  font-style: italic;
+  color: #878787;
+}
+.aboutQuote blockquote p i {
+  position: absolute;
+  top: 0;
+  left: -25px;
+  color: #878787;
+}

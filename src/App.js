@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component } from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router";
 import MenProducts from "./components/Man/MenProducts";
 import NavBar from "./components/NavBar";
@@ -13,12 +13,14 @@ import Contact from "./components/Contact/Contact";
 import ProductDetails from "./components/ProductDelatils/ProductDetails";
 import Footer from "./components/Footer/Footer";
 import Wishlist from "./components/Wishlist/Wishlist";
+import { ContactUSData } from "./components/Contact/ContactData";
 import Swal from "sweetalert2";
 
 class App extends React.Component {
   state = {
     Products: AllProducts,
-    TotlaPrice: 0
+    TotlaPrice: 0,
+    Data: ContactUSData,
   };
   // increment count
   Handelerincrement = (item) => {
@@ -26,19 +28,19 @@ class App extends React.Component {
     let index = result.indexOf(item);
     result[index].count++;
     let price = result[index].incrementPrice;
-    let total = this.state.TotlaPrice
+    let total = this.state.TotlaPrice;
     total += price;
     this.setState({
       Products: result,
-      TotlaPrice: total
-    })
+      TotlaPrice: total,
+    });
   };
   // Decrement count
   HandelerDecrement = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
     let price = result[index].incrementPrice;
-    let total = this.state.TotlaPrice
+    let total = this.state.TotlaPrice;
     if (result[index].count > 1) {
       result[index].count--;
       total -= price;
@@ -47,8 +49,8 @@ class App extends React.Component {
     }
     this.setState({
       Products: result,
-      TotlaPrice: total
-    })
+      TotlaPrice: total,
+    });
   };
   // Add Product to Cart
   HandelerAddCart = (item) => {
@@ -62,7 +64,7 @@ class App extends React.Component {
       window.localStorage.setItem(`borduct ${result[index].name} inCart`, true);
       this.setState({
         Products: result,
-        TotlaPrice: total
+        TotlaPrice: total,
       });
     }
   };
@@ -72,24 +74,31 @@ class App extends React.Component {
     let index = result.indexOf(item);
     let total = this.state.TotlaPrice;
     let price = result[index].incrementPrice;
-    if (window.localStorage.getItem(`borduct ${result[index].name} inCart`) === `true`) {
+    if (
+      window.localStorage.getItem(`borduct ${result[index].name} inCart`) ===
+      `true`
+    ) {
       total = total - price * result[index].count;
       result[index].incart = false;
-      window.localStorage.setItem(`borduct ${result[index].name} inCart`, false);
+      window.localStorage.setItem(
+        `borduct ${result[index].name} inCart`,
+        false
+      );
       result[index].count = 1;
     }
     this.setState({
       Products: result,
-      TotlaPrice: total
+      TotlaPrice: total,
     });
-  }
+  };
   // Add Product to WishList
   HandelerAddWish = (item) => {
     let result = [...this.state.Products];
     let index = result.indexOf(item);
-    result[index].wish = true;
+    // result[index].wish = true;
+    result[index].wish = !result[index].wish;
     this.setState({
-      Products: result
+      Products: result,
     });
   };
   // Delete Product From WishList
@@ -101,52 +110,60 @@ class App extends React.Component {
       Products: result,
     });
   };
-  // Confirm Checkout 
+  // Confirm Checkout
   handlerConfrim = () => {
     let result = [...this.state.Products];
     result = result.map((ele) => {
       window.localStorage.setItem(`borduct ${ele.name} inCart`, false);
       ele.incart = false;
-      ele.count = 1
-      return ele
+      ele.count = 1;
+      return ele;
     });
     let total = this.state.TotlaPrice;
     total = 0;
     this.setState({
       Products: result,
-      TotlaPrice: total
-    })
-  }
+      TotlaPrice: total,
+    });
+  };
+  // Contact Data
+  HandelAdddata = (e) => {
+    this.state.Data.push(e);
+    this.setState({
+      Data: this.state.Data,
+    });
+  };
   // Register // Can't by or wish any product untill Register
+
   async HandlerReister() {
     const { value: email } = await Swal.fire({
-      title: 'Register',
-      input: 'email',
-      inputLabel: 'Your email address',
-      inputPlaceholder: 'Enter your email address'
-    })
+      title: "Register",
+      input: "email",
+      inputLabel: "Your email address",
+      inputPlaceholder: "Enter your email address",
+    });
 
     if (email) {
-      window.localStorage.setItem("email", email)
+      window.localStorage.setItem("email", email);
     }
     const { value: password } = await Swal.fire({
-      title: 'Enter your password',
-      input: 'password',
-      inputLabel: 'Password',
-      inputPlaceholder: 'Enter your password',
+      title: "Enter your password",
+      input: "password",
+      inputLabel: "Password",
+      inputPlaceholder: "Enter your password",
       inputAttributes: {
         maxlength: 10,
-        autocapitalize: 'off',
-        autocorrect: 'off'
-      }
-    })
+        autocapitalize: "off",
+        autocorrect: "off",
+      },
+    });
 
     if (password) {
-      window.localStorage.setItem("paswword", password)
+      window.localStorage.setItem("password", password);
     }
   }
   render() {
-    // window.localStorage.clear()
+    // window.localStorage.clear();
     return (
       <React.Fragment>
         <NavBar
@@ -162,7 +179,8 @@ class App extends React.Component {
               <Home
                 Products={this.state.Products}
                 register={this.HandlerReister}
-                {...props} />
+                {...props}
+              />
             )}
           />
           <Route
@@ -172,6 +190,7 @@ class App extends React.Component {
                 Products={this.state.Products}
                 register={this.HandlerReister}
                 AddWish={this.HandelerAddWish}
+                WishIcon={this.WishIcon}
                 {...props}
               />
             )}
@@ -208,7 +227,8 @@ class App extends React.Component {
                 AddButton={this.HandelerAddCart}
                 AddWish={this.HandelerAddWish}
                 register={this.HandlerReister}
-                {...props} />
+                {...props}
+              />
             )}
           />
           <Route
@@ -217,11 +237,17 @@ class App extends React.Component {
               <Wishlist
                 Products={this.state.Products.filter((ele) => ele.wish)}
                 DeleteWish={this.HandelerDeleteWish}
-                {...props} />
+                {...props}
+              />
             )}
           />
           <Route path="/About" render={(props) => <About {...props} />} />
-          <Route path="/Contact" render={(props) => <Contact {...props} />} />
+          <Route
+            path="/Contact"
+            render={(props) => (
+              <Contact AddData={this.HandelAdddata} {...props} />
+            )}
+          />
           <Route
             path="/cart"
             render={(props) => (

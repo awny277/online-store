@@ -24,6 +24,7 @@
 .footer .info i {
   margin-right: 10px;
   font-size: 20px;
+  color: var(--gray-color);
 }
 
 .footer .info a {
@@ -76,7 +77,7 @@
   color: #007bb6;
 }
 .links  a:nth-of-type(5):hover{
-  color: var(--main-color);
+  color:black;
 }
 
 .Categories .navlink {

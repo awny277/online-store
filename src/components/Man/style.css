@@ -43,10 +43,12 @@
 .product-body .box-info .brand {
   font-size: 13px;
   margin-bottom: 10px;
+  width: 100%;
 }
 .product-body .box-info .brand span {
   color: #002683;
   font-weight: 800;
+  margin-left: 5px;
 }
 .product-body .box-info .price {
   font-weight: 800;

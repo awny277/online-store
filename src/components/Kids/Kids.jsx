@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
-import './style.css'
-// import { Kids_Products } from '../Products';
+import React from "react";
+import "./style.css";
+
 class KidsProducts extends React.Component {
-  // state = {
-  //   Products: Kids_Products
-  // }
   render() {
-    let product = this.props.Products.filter((ele) => ele.id > 14)
-    console.log(product)
+    let product = this.props.Products.filter((ele) => ele.id > 14);
     return (
       <React.Fragment>
         <div className="container page-content kids-page">
@@ -15,7 +11,9 @@ class KidsProducts extends React.Component {
             <div className="sidebar col-md-3 d-none d-lg-block">
               <div className="silder-inside">
                 <h3>great discount</h3>
-                <p className="use-code">use the following propmo code to get amazing discount</p>
+                <p className="use-code">
+                  use the following propmo code to get amazing discount
+                </p>
                 <div className="discount">
                   <p>tenpresent</p>
                   <span>10%</span>
@@ -28,13 +26,18 @@ class KidsProducts extends React.Component {
             </div>
             <div className="col-md-9">
               <div className="container">
-                <p className="lead productCount">({product.length}) product found</p>
+                <p className="lead productCount">
+                  ({product.length}) product found
+                </p>
                 <div className="product-body row justify-content-around">
                   {product.map((ele) => {
                     return (
                       <div className="col-md-3 product " key={ele.id}>
                         <div className="image">
-                          <img onClick={() => this.props.history.push(`/product/${ele.id}`)}
+                          <img
+                            onClick={() =>
+                              this.props.history.push(`/product/${ele.id}`)
+                            }
                             src={`images/shop_images/${ele.image}`}
                             alt="test"
                           />
@@ -42,9 +45,13 @@ class KidsProducts extends React.Component {
                         <div className="box-info">
                           <span className="offical">official store</span>
                           <p className="name">{ele.name}</p>
-                          <p className="brand">barnd: <span>{ele.brand}</span></p>
+                          <p className="brand">
+                            barnd: <span>{ele.brand}</span>
+                          </p>
                           <p className="price">EGP {ele.incrementPrice}</p>
-                          <del className="discoundPrice">EGP {ele.discountprice}</del>
+                          <del className="discoundPrice">
+                            EGP {ele.discountprice}
+                          </del>
                           <span className="discount">-{ele.discount}%</span>
                           <div className="star-icon ">
                             <div>
@@ -58,13 +65,20 @@ class KidsProducts extends React.Component {
                               className="btn"
                               onClick={() => {
                                 if (window.localStorage.length !== 0) {
-                                  this.props.AddWish(ele)
+                                  this.props.AddWish(ele);
                                 } else {
-                                  this.props.register()
+                                  this.props.register();
                                 }
                               }}
                             >
-                              <i className="fas fa-heart love"></i>
+                              <i
+                                style={
+                                  ele.wish === true
+                                    ? { color: "#e91e63" }
+                                    : { color: "#253b70" }
+                                }
+                                className="fas fa-heart love"
+                              ></i>
                             </button>
                           </div>
                         </div>

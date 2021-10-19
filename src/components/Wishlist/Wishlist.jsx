@@ -2,12 +2,11 @@ import React from 'react';
 import './style.css'
 class Wishlist extends React.Component {
   render() {
-    let product = this.props.Products.map((ele) => ele)
+    let product = this.props.Products.map((ele) => ele);
     return (
       <React.Fragment>
         <div className="container wishList">
           <h1 className="CartName"> {product.length === 0 ? "wishList" : `Wishes (${product.map((ele) => ele.incart).length} item)`}</h1>
-          {/* <h1 className="lead text-center wishHeader">{product.length === 0 ? "There are no wishes yet" : "This is your wish"}</h1> */}
           <div>{product.length === 0 ?
             <div className=" text-center EmptCart">
               <div className="emptCartImg">
@@ -46,7 +45,7 @@ class Wishlist extends React.Component {
                           className="btn"
                           onClick={() => this.props.DeleteWish(ele)}
                         >
-                          <i className="fas fa-heart "></i>
+                          <i style={ele.wish === true ? { color: '#e91e63' } : { color: '#253b70' }} className="fas fa-heart "></i>
                         </button>
                       </div>
                     </div>

@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+.contact h1 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: var(--blue-color);
+}
+.contact h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+.contactInput {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.contactInput label {
+  color: var(--gray-color);
+  font-size: 14px;
+  font-weight: 500;
+}
+.contactInput  input {
+  height: 40px;
+  border: 1px solid #ccc;
+}
+.contactInput textarea {
+  border: 1px solid #ccc;
+}
+.contactInput input[type='submit'] {
+  background-color: transparent;
+  border: 1px solid var(--blue-color);
+  padding: 5px;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--blue-color);
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.contactInput input[type='submit']:hover {
+  background-color: var(--blue-color);
+  color: var(--white-color);
+}
+.contactInfo {
+  padding-top: 15px;
+}
+.contactInfo .info {
+  display: flex;
+}
+.contactInfo .info i {
+  margin-right: 10px;
+  color: var(--gray-color);
+}
+.contactInfo p {
+  color: var(--gray-color);
+  font-size: 15px;
+  width: 88%;
+}

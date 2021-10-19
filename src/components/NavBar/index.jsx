@@ -4,52 +4,93 @@ import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 
 class NavBar extends React.Component {
+  state = {
+    sec: 5,
+    min: 1,
+    hr: 7,
+  };
+
+  componentDidMount() {
+    setInterval(() => {
+      let second = this.state.sec;
+      let mintues = this.state.min;
+      let hour = this.state.hr;
+      if (second > 0) {
+        second--;
+      } else {
+        second = 59;
+        if (mintues > 0) {
+          mintues--;
+        } else {
+          mintues = 59;
+          hour--;
+        }
+      }
+
+      this.setState({
+        sec: second,
+        min: mintues,
+        hr: hour,
+      });
+    }, 1000);
+  }
   render() {
     let product = this.props.register;
 
     // Login
     async function Login(e) {
       const { value: email } = await Swal.fire({
-        allowOutsideClick: false,
-        title: 'Login',
-        input: 'email',
-        inputLabel: 'Your email address',
-        inputPlaceholder: 'Enter your email address'
-      })
+        // allowOutsideClick: false,
+        title: "Login",
+        input: "email",
+        inputLabel: "Your email address",
+        inputPlaceholder: "Enter your email address",
+      });
+      if (email) {
+        const { value: password } = await Swal.fire({
+          // allowOutsideClick: false,
+          title: "Login",
+          input: "password",
+          inputLabel: "Password",
+          inputPlaceholder: "Enter your password",
+          inputAttributes: {
+            maxlength: 10,
+            autocapitalize: "off",
+            autocorrect: "off",
+          },
+        });
 
-      const { value: password } = await Swal.fire({
-        allowOutsideClick: false,
-        title: 'Login',
-        input: 'password',
-        inputLabel: 'Password',
-        inputPlaceholder: 'Enter your password',
-        inputAttributes: {
-          maxlength: 10,
-          autocapitalize: 'off',
-          autocorrect: 'off'
-        }
-      })
-
-      if (password) {
-        // If Password or email Rong return Reister
-        if (window.localStorage.length === 0 || window.localStorage.getItem("password") !== password || window.localStorage.getItem("email") !== email) {
-          e.preventDefault()
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Emaill or Password is Wrong',
-            footer: `<button class="register btn" >register</button>`
-          })
-          document.querySelector(".register").onclick = () => {
-            product();
+        if (password) {
+          // If Password or email Rong return Reister
+          if (
+            // window.localStorage.length === 0 ||
+            window.localStorage.getItem("password") !== password ||
+            window.localStorage.getItem("email") !== email
+          ) {
+            e.preventDefault();
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Emaill or Password is Wrong",
+              footer: `<button class="register btn" >register</button>`,
+            });
+            document.querySelector(".register").onclick = () => {
+              product();
+            };
           }
         }
       }
     }
     return (
-      <div className="nav-bar">
+      <div className="nav-bar navBarItem">
         <p className="sale">
-          today deal sale of 70% . End in 7 Days 00:00:00 harry up{"   "}
+          today deal sale of 70% . End in 0 Days{" "}
+          <span>
+            07:{this.state.min}:{this.state.sec}
+          </span>{" "}
+          <NavLink className="harry" to="/MenProducts">
+            Harry Up
+          </NavLink>
           <span>
             <i className="fas fa-arrow-right arrow"></i>
           </span>
@@ -67,26 +108,48 @@ class NavBar extends React.Component {
             summer sale discount off <span className="red">50%</span>{" "}
             <span className="black">!shop now</span>
           </p>
-          <p className="btn-lang">
-            <span className="m-3">
-              Engilsh
-              <i className="fas fa-chevron-down m-1"></i>
-            </span>
-            <span className="m-3">
-              <img
-                src="https://cache.vtrcdn.com/orion/images/icon/flags/flag_en.png"
-                alt=""
-                width="30px"
-                height="20px"
-              />{" "}
-              <i className="fas fa-chevron-down m-1"></i>
-            </span>
-          </p>
+          <div className="btn-lang">
+            <a
+              href="https://www.facebook.com/abdo.awny.9/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://twitter.com/Abdelrahman2486"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/abdelrahman_awny/ "
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/abdelrahman-awny/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-linkedin-in"></i>
+            </a>
+            <a
+              href="https://github.com/awny277"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+          </div>
         </div>
         <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
-            <NavLink className="navbar-brand" to="/">
-              store
+            <NavLink className="navbar-brand realx" to="/">
+              Relax Store
             </NavLink>
             <button
               className="navbar-toggler"
@@ -127,7 +190,10 @@ class NavBar extends React.Component {
                   <i className="fas fa-heart  "></i>
                   <span>{this.props.wish}</span>
                 </NavLink>
-                <button className="btn" onClick={Login}> Login</button>
+                <button className="btn" onClick={Login}>
+                  {" "}
+                  Login
+                </button>
               </div>
             </div>
           </div>
